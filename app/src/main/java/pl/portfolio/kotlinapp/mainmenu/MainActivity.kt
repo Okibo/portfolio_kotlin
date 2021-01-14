@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.*
 import pl.portfolio.kotlinapp.R
+import pl.portfolio.kotlinapp.nasafeed.NASAFeedActivity
 import pl.portfolio.kotlinapp.tictactoe.TicTacToeMenuActivity
 
 private var applicationMap = mutableListOf<MainMenuItem>()
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val appListView = findViewById<ListView>(R.id.appListView)
         applicationMap.clear()
         applicationMap.add(MainMenuItem("Simple Game",Intent(this, TicTacToeMenuActivity::class.java)))
+        applicationMap.add(MainMenuItem("NASA Feed",Intent(this, NASAFeedActivity::class.java)))
 
         appListView.adapter = MainMenuAdapter(this, applicationMap)
     }
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getCount(): Int {
-            return applicationMap.count()
+            return appList.count()
         }
     }
 }
