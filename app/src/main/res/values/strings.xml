@@ -18,4 +18,8 @@
 
     <!--NASA Feed -->
     <string name="nasa_title">NASA News</string>
+
+    <!--To Do List-->
+    <string name="todo_no_title_err">Provide title</string>
+
 </resources>

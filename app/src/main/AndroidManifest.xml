@@ -15,6 +15,9 @@
             android:name=".nasafeed.NASAFeedActivity"
             android:parentActivityName=".mainmenu.MainActivity"/>
         <activity
+            android:name=".todo.ToDoActivity"
+            android:parentActivityName=".mainmenu.MainActivity"/>
+        <activity
             android:name=".tictactoe.TicTacToeMenuActivity"
             android:parentActivityName=".mainmenu.MainActivity"/>
         <activity

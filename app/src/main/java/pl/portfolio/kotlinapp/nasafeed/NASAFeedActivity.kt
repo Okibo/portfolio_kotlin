@@ -33,7 +33,7 @@ class NASAFeedActivity: AppCompatActivity() {
         title = "NASA Feed"
         val feedListView = findViewById<RecyclerView>(R.id.nasaFeedListView)
         val linearManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(feedListView.getContext(),linearManager.getOrientation())
+        val dividerItemDecoration = DividerItemDecoration(feedListView.context,linearManager.getOrientation())
         feedListView.adapter = adapter
         feedListView.layoutManager = linearManager
         feedListView.addItemDecoration(dividerItemDecoration);
