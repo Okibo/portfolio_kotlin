@@ -38,19 +38,26 @@ class ParseApplication {
                     }
                     XmlPullParser.TEXT -> textValue = xpp.text
                     XmlPullParser.END_TAG -> if (inEntry) {
-                        if (entryName.equals(tagName, ignoreCase = true)) {
-                            currentRecord?.let { nasaNews.add(it) }
-                            inEntry = false
-                        } else if (titleName.equals(tagName, ignoreCase = true)) {
-                            currentRecord?.title = textValue
-                        } else if (descName.equals(tagName, ignoreCase = true)) {
-                            currentRecord?.description = textValue
-                        } else if (publishDateName.equals(tagName, ignoreCase = true)) {
-                            currentRecord?.pubdate = textValue
-                        } else if (linkName.equals(tagName, ignoreCase = true)) {
-                            currentRecord?.link = textValue
-                        } else if (sourceName.equals(tagName, ignoreCase = true)) {
-                            currentRecord?.source = textValue
+                        when {
+                            entryName.equals(tagName, ignoreCase = true) -> {
+                                currentRecord?.let { nasaNews.add(it) }
+                                inEntry = false
+                            }
+                            titleName.equals(tagName, ignoreCase = true) -> {
+                                currentRecord?.title = textValue
+                            }
+                            descName.equals(tagName, ignoreCase = true) -> {
+                                currentRecord?.description = textValue
+                            }
+                            publishDateName.equals(tagName, ignoreCase = true) -> {
+                                currentRecord?.pubdate = textValue
+                            }
+                            linkName.equals(tagName, ignoreCase = true) -> {
+                                currentRecord?.link = textValue
+                            }
+                            sourceName.equals(tagName, ignoreCase = true) -> {
+                                currentRecord?.source = textValue
+                            }
                         }
                     }
                     else -> {

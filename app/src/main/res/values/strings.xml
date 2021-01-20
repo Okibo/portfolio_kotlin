@@ -1,10 +1,11 @@
 <resources>
+    <!-- Main menu -->
     <string name="app_name">Portfolio</string>
     <string name="menuLbl">Menu</string>
 
     <!--Tic Tac Toe-->
     <string name="ttt_title">Tic Tac Toe</string>
-    <string name="ttt_vs_bot_key">ttt_vsHuman</string>
+    <string name="ttt_vs_bot_key">ttt_vs_bot</string>
     <string name="ttt_red_player">Red Player</string>
     <string name="ttt_yellow_player">Yellow Player</string>
     <string name="ttt_result_tie">TIE</string>
@@ -14,12 +15,17 @@
     <string name="ttt_vshuman_btn">vs Human</string>
     <string name="ttt_vsbot_btn">vs Bot</string>
     <string name="ttt_back_btn">BACK</string>
+    <string name="ttt_model_key">ttt_game_model_instance</string>
+    <string name="ttt_first_player_key">ttt_first_player</string>
+    <string name="ttt_game_won_key">ttt_won_game</string>
+    <string name="ttt_move_counter_key">ttt_move_counter</string>
     <string name="ttt_play_again_btn">PLAY AGAIN</string>
 
     <!--NASA Feed -->
     <string name="nasa_title">NASA News</string>
 
     <!--To Do List-->
+    <string name="todo_title">To Do list</string>
     <string name="todo_no_title_err">Provide title</string>
 
 </resources>

@@ -2,7 +2,6 @@ package pl.portfolio.kotlinapp.nasafeed
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,38 +14,35 @@ import pl.portfolio.kotlinapp.R
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.lang.Exception
-import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
+private const val TAG = "NASAFeed"
 class NASAFeedActivity: AppCompatActivity() {
 
     private val feedUrl = "https://www.nasa.gov/rss/dyn/solar_system.rss"
     private val list: ArrayList<FeedEntry> = arrayListOf()
     private val adapter = FeedAdapter(list)
-    private val TAG = "NASA Feed"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nasafeed_activity)
-        title = "NASA Feed"
+        title = getString(R.string.nasa_title)
         val feedListView = findViewById<RecyclerView>(R.id.nasaFeedListView)
         val linearManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(feedListView.context,linearManager.getOrientation())
+        val dividerItemDecoration = DividerItemDecoration(feedListView.context,linearManager.orientation)
         feedListView.adapter = adapter
         feedListView.layoutManager = linearManager
-        feedListView.addItemDecoration(dividerItemDecoration);
+        feedListView.addItemDecoration(dividerItemDecoration)
         feedListView.setHasFixedSize(true)
 
         val url:URL? = try {
             URL(feedUrl)
         }catch (e: MalformedURLException){
-            Log.e("Exception", e.toString())
+            Log.e(TAG, e.toString())
             null
         }
-
-        //url?.let { adapter.notifyDataSetChanged() }
 
         // io dispatcher for networking operation
         lifecycleScope.launch(Dispatchers.IO) {
@@ -63,7 +59,6 @@ class NASAFeedActivity: AppCompatActivity() {
                     // main dispatcher for interaction with ui objects
                     withContext(Dispatchers.Main) {
                         adapter.notifyDataSetChanged()
-
                     }
                 }
             }

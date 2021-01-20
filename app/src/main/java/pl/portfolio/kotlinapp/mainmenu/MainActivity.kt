@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
             val row = layoutInflater.inflate(R.layout.menu_record, parent, false)
             val button = row.findViewById<Button>(R.id.recordBtn)
 
-            button.text = appList.get(position).content
-            button.setOnClickListener(){
-                context.startActivity(appList.get(position).intent)
+            button.text = appList[position].content
+            button.setOnClickListener{
+                context.startActivity(appList[position].intent)
             }
             return row
         }

@@ -1,8 +1,5 @@
 package pl.portfolio.kotlinapp.todo
 
-import android.content.ContentValues
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -26,7 +23,7 @@ class ToDoActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.todolist_activity)
-        title = "To Do list"
+        title = getString(R.string.todo_title)
 
         val linearManager = LinearLayoutManager(this)
         val dividerItemDecoration = DividerItemDecoration(todoListView.context,linearManager.orientation)
