@@ -1,16 +1,17 @@
 package pl.portfolio.kotlinapp.todo
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import pl.portfolio.kotlinapp.R
-
 
 
 class ToDoAdapter(private val context: Context, private val todoList: ArrayList<ToDoEntry>, private val db: ToDoDatabase): RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
@@ -61,6 +62,7 @@ class ToDoAdapter(private val context: Context, private val todoList: ArrayList<
         }
 
         dialog.show()
+        dialog.findViewById<TextView>(R.id.todo_apply_button).setText(R.string.todo_dialog_edit_btn)
         dialog.findViewById<EditText>(R.id.todo_add_title_edit).setText(todoList[position].title)
         dialog.findViewById<EditText>(R.id.todo_add_note_edit).setText(todoList[position].note)
     }

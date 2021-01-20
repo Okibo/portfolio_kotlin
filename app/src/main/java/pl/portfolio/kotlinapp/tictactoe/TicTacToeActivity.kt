@@ -12,14 +12,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import pl.portfolio.kotlinapp.R
 
 class TicTacToeActivity: AppCompatActivity() {
-    private val MAX_MOVES: Int = 9
-    private val TRANSLATION_VALUE: Int = 1000
-    private val ANIMATION_DURATION: Int = 1000
-    private val TTT_MODEL_KEY: String = "ttt_game_model_instance"
-    private val TTT_FIRST_PLAYER_KEY: String = "ttt_first_player"
-    private val TTT_GAME_WON_KEY: String = "ttt_won_game"
-    private val TTT_VS_BOT_KEY: String = "ttt_vs_bot"
-    private val TTT_MOVE_COUNTER_KEY: String = "ttt_move_counter"
+    private val maxMoves: Int = 9
+    private val translationValue: Float = 1000f
+    private val animationDuration: Long = 1000
     private val fadeOut = 0f
     private val fadeIn = 1f
     private var vsBot = false
@@ -32,22 +27,22 @@ class TicTacToeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tic_tac_toe)
-        title = "Tic Tac Toe"
+        title = getString(R.string.ttt_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val resultLayout = findViewById<ConstraintLayout>(R.id.ttt_result_layout)
         val buttonsLayout = findViewById<LinearLayout>(R.id.ttt_bottom_layout)
-        resultLayout.translationY = (TRANSLATION_VALUE * -1).toFloat()
-        buttonsLayout.translationY = TRANSLATION_VALUE.toFloat()
+        resultLayout.translationY = (translationValue * -1)
+        buttonsLayout.translationY = translationValue
 
         populateTokenArray()
 
         if (savedInstanceState != null) {
-            gameModel = savedInstanceState.getParcelable(TTT_MODEL_KEY)
-            firstPlayer = savedInstanceState.getBoolean(TTT_FIRST_PLAYER_KEY)
-            wonGame = savedInstanceState.getBoolean(TTT_GAME_WON_KEY)
-            vsBot = savedInstanceState.getBoolean(TTT_VS_BOT_KEY)
-            moveCounter = savedInstanceState.getInt(TTT_MOVE_COUNTER_KEY)
+            gameModel = savedInstanceState.getParcelable(getString(R.string.ttt_model_key))
+            firstPlayer = savedInstanceState.getBoolean(getString(R.string.ttt_first_player_key))
+            wonGame = savedInstanceState.getBoolean(getString(R.string.ttt_game_won_key))
+            vsBot = savedInstanceState.getBoolean(getString(R.string.ttt_vs_bot_key))
+            moveCounter = savedInstanceState.getInt(getString(R.string.ttt_move_counter_key))
             displayCheckedTokens()
             checkMove()
         } else {
@@ -59,24 +54,24 @@ class TicTacToeActivity: AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(out: Bundle) {
-        out.putParcelable(TTT_MODEL_KEY, gameModel)
-        out.putBoolean(TTT_FIRST_PLAYER_KEY, firstPlayer)
-        out.putBoolean(TTT_GAME_WON_KEY, wonGame)
-        out.putBoolean(TTT_VS_BOT_KEY, vsBot)
-        out.putInt(TTT_MOVE_COUNTER_KEY, moveCounter)
+        out.putParcelable(getString(R.string.ttt_model_key), gameModel)
+        out.putBoolean(getString(R.string.ttt_first_player_key), firstPlayer)
+        out.putBoolean(getString(R.string.ttt_game_won_key), wonGame)
+        out.putBoolean(getString(R.string.ttt_vs_bot_key), vsBot)
+        out.putInt(getString(R.string.ttt_move_counter_key), moveCounter)
         super.onSaveInstanceState(out)
     }
 
     private fun populateTokenArray() {
-        tokenArray[0][0] = findViewById<ImageView>(R.id.token00)
-        tokenArray[0][1] = findViewById<ImageView>(R.id.token01)
-        tokenArray[0][2] = findViewById<ImageView>(R.id.token02)
-        tokenArray[1][0] = findViewById<ImageView>(R.id.token10)
-        tokenArray[1][1] = findViewById<ImageView>(R.id.token11)
-        tokenArray[1][2] = findViewById<ImageView>(R.id.token12)
-        tokenArray[2][0] = findViewById<ImageView>(R.id.token20)
-        tokenArray[2][1] = findViewById<ImageView>(R.id.token21)
-        tokenArray[2][2] = findViewById<ImageView>(R.id.token22)
+        tokenArray[0][0] = findViewById(R.id.token00)
+        tokenArray[0][1] = findViewById(R.id.token01)
+        tokenArray[0][2] = findViewById(R.id.token02)
+        tokenArray[1][0] = findViewById(R.id.token10)
+        tokenArray[1][1] = findViewById(R.id.token11)
+        tokenArray[1][2] = findViewById(R.id.token12)
+        tokenArray[2][0] = findViewById(R.id.token20)
+        tokenArray[2][1] = findViewById(R.id.token21)
+        tokenArray[2][2] = findViewById(R.id.token22)
     }
 
     private fun displayCheckedTokens() {
@@ -107,7 +102,7 @@ class TicTacToeActivity: AppCompatActivity() {
         for (row in tokenArray.indices) {
             for (column in 0 until tokenArray[row].count()) {
                 if (tokenArray[row][column] === target) {
-                    pair = Pair<Int, Int>(row, column)
+                    pair = Pair(row, column)
                     break
                 }
             }
@@ -120,7 +115,7 @@ class TicTacToeActivity: AppCompatActivity() {
         }
         gameModel!!.makeMove(firstPlayer, pair)
         animateMove(target)
-        if (vsBot && moveCounter < MAX_MOVES) {
+        if (vsBot && moveCounter < maxMoves) {
             val botPair: Pair<Int, Int>? = gameModel!!.botMove()
             val row: Int = botPair!!.first
             val column: Int = botPair.second
@@ -132,7 +127,7 @@ class TicTacToeActivity: AppCompatActivity() {
     private fun animateMove(target: ImageView) {
         if (!wonGame) {
             val alpha = AlphaAnimation(fadeOut, fadeIn)
-            alpha.duration = ANIMATION_DURATION.toLong()
+            alpha.duration = animationDuration
             alpha.fillAfter = true
             target.setImageResource(if (firstPlayer) R.drawable.tictactoe_yellow else R.drawable.tictactoe_red)
             target.startAnimation(alpha)
@@ -143,7 +138,7 @@ class TicTacToeActivity: AppCompatActivity() {
 
     private fun checkMove() {
         wonGame = gameModel!!.checkIfWon()
-        if (!wonGame && moveCounter == MAX_MOVES) {
+        if (!wonGame && moveCounter == maxMoves) {
             showResult()
         } else if (wonGame) {
             showResult()
@@ -152,7 +147,7 @@ class TicTacToeActivity: AppCompatActivity() {
         }
     }
 
-    fun restartGame(view: View?) {
+    fun restartGame(view: View) {
         val duration = 200
         for (row in 0..2) {
             for (column in 0..2) {
@@ -172,12 +167,12 @@ class TicTacToeActivity: AppCompatActivity() {
 
         val resultLayout = findViewById<ConstraintLayout>(R.id.ttt_result_layout)
         val buttonsLayout = findViewById<LinearLayout>(R.id.ttt_bottom_layout)
-        resultLayout.animate().translationYBy((TRANSLATION_VALUE * -1).toFloat()).duration = duration.toLong()
-        buttonsLayout.animate().translationYBy(TRANSLATION_VALUE.toFloat()).duration = duration.toLong()
+        resultLayout.animate().translationYBy((translationValue * -1)).duration = duration.toLong()
+        buttonsLayout.animate().translationYBy(translationValue).duration = duration.toLong()
         gameModel!!.resetBoard()
     }
 
-    fun goBack(view: View?) {
+    fun goBack(view: View) {
         finish()
     }
 
@@ -201,9 +196,7 @@ class TicTacToeActivity: AppCompatActivity() {
             token.startAnimation(alpha)
         }
         resultLbl.setText(if (wonGame) R.string.ttt_result_won else R.string.ttt_result_tie)
-        resultLayout.animate().translationYBy(TRANSLATION_VALUE.toFloat())
-            .setDuration(ANIMATION_DURATION.toLong())
-        buttonsLayout.animate().translationYBy((TRANSLATION_VALUE * -1).toFloat())
-            .setDuration(ANIMATION_DURATION.toLong())
+        resultLayout.animate().translationYBy(translationValue).duration = animationDuration
+        buttonsLayout.animate().translationYBy((translationValue * -1)).duration = animationDuration
     }
 }

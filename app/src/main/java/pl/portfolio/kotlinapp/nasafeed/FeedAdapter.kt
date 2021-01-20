@@ -9,8 +9,6 @@ import pl.portfolio.kotlinapp.R
 
 class FeedAdapter(private val feedList: ArrayList<FeedEntry>): RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
 
-    fun getlistsize() = feedList.size
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.nasafeed_record, parent, false)
 
