@@ -146,7 +146,7 @@ class TicTacToeActivity: AppCompatActivity() {
             firstPlayer = !firstPlayer
         }
     }
-
+    
     fun restartGame(view: View) {
         val duration = 200
         for (row in 0..2) {
