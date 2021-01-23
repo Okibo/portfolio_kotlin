@@ -10,9 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".shoppinglist.ui.shoppinglist.ShoppingApplication"
         android:theme="@style/Theme.KotlinApp">
         <activity
             android:name=".nasafeed.NASAFeedActivity"
+            android:parentActivityName=".mainmenu.MainActivity"/>
+        <activity
+            android:name=".shoppinglist.ui.ShoppingListActivity"
             android:parentActivityName=".mainmenu.MainActivity"/>
         <activity
             android:name=".todo.ToDoActivity"
