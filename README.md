@@ -26,6 +26,7 @@ It was made using:
 4. XML Parser
 5. ViewHolder
 
+
 ## TODO List
 
 Simple application for creating list of task todo.
@@ -36,3 +37,35 @@ It was made using:
 4. CardView
 5. Material Dialog
 6. Custom menu options
+
+
+## Shopping List
+
+Simple application for creating shopping list.
+It was made using:
+1. SQLite
+2. ViewHolder
+3. RecyclerView
+4. CardView
+5. Material Dialog
+6. MVVM
+7. Coroutines
+8. Room
+
+
+## News app
+
+Application displaying list of breaking news with possibility to save favorites articels
+and search for them.
+It was made using:
+1. SQLite
+2. ViewHolder
+3. RecyclerView
+4. Fragments
+5. Glide
+6. MVVM
+7. Coroutines
+8. Room
+9. Retrofit
+10. Navigation
+
