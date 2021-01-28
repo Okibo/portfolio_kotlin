@@ -8,6 +8,7 @@ import android.view.*
 import android.widget.*
 import pl.portfolio.kotlinapp.R
 import pl.portfolio.kotlinapp.nasafeed.NASAFeedActivity
+import pl.portfolio.kotlinapp.newsapp.NewsAppActivity
 import pl.portfolio.kotlinapp.shoppinglist.ui.ShoppingListActivity
 import pl.portfolio.kotlinapp.tictactoe.TicTacToeMenuActivity
 import pl.portfolio.kotlinapp.todo.ToDoActivity
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         applicationMap.add(MainMenuItem("NASA Feed",Intent(this, NASAFeedActivity::class.java)))
         applicationMap.add(MainMenuItem("To Do",Intent(this, ToDoActivity::class.java)))
         applicationMap.add(MainMenuItem("Shopping List",Intent(this, ShoppingListActivity::class.java)))
+        applicationMap.add(MainMenuItem("News App",Intent(this, NewsAppActivity::class.java)))
 
         appListView.adapter = MainMenuAdapter(this, applicationMap)
     }

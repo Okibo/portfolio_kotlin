@@ -8,10 +8,11 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
+import pl.portfolio.kotlinapp.PortfolioApplication
 import pl.portfolio.kotlinapp.shoppinglist.data.db.ShoppingDatabase
 import pl.portfolio.kotlinapp.shoppinglist.data.repositories.ShoppingRepository
 
-class ShoppingApplication: Application(), KodeinAware {
+class ShoppingApplication: PortfolioApplication(), KodeinAware {
     override val kodein: Kodein = Kodein.lazy{
         import(androidXModule(this@ShoppingApplication))
         bind() from singleton { ShoppingDatabase(instance())}
